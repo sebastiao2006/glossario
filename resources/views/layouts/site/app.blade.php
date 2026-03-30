@@ -13,9 +13,10 @@
     <main>
         @yield('content')
     </main>
-
+    
     @include('components.site.footer')
 
     @include('partials.site.scripts')
+    
 </body>
 </html>
