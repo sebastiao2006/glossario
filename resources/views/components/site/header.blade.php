@@ -6,7 +6,7 @@
               <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg">
                   <a class="navbar-brand" href="index.html">
-                    <img src="assets/img/logo/logo.svg" alt="Logo" />
+                    <img src="assets/img/logo/logo.png" alt="Logo" />
                   </a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="toggler-icon"></span>
@@ -20,19 +20,16 @@
                         <a class="page-scroll active" href="#home">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="page-scroll" href="#services">Services</a>
+                        <a class="page-scroll" href="#services">Serviços</a>
                       </li>
                       <li class="nav-item">
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="#about">Sobre</a>
                       </li>
                       <li class="nav-item">
-                        <a class="page-scroll" href="#pricing">Pricing</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="#contact">Contacto</a>
                       </li>
                     </ul>
-                    <a href="#0" class="button button-sm radius-10 d-none d-lg-flex">Get Started</a>
+                    <a href="#0" class="button button-sm radius-10 d-none d-lg-flex">Solicitar Consultoria</a>
                   </div>
                   <!-- navbar collapse -->
                 </nav>
