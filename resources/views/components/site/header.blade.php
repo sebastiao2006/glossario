@@ -34,9 +34,14 @@
                     @endguest
 
                     @auth
-                        <a href="{{ auth()->user()->role === 'admin' ? route('admin.dashboard') : route('site.home') }}" class="btn btn-primary ms-3">
-                            Painel
-                        </a>
+                        @if(auth()->user()->role === 'admin')
+                            <a href="{{ route('admin.dashboard') }}" class="btn btn-primary ms-3">Painel</a>
+                        @endif
+
+                        <form method="POST" action="{{ route('logout') }}" class="d-inline ms-2">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger">Sair</button>
+                        </form>
                     @endauth
                   </div>
                   <!-- navbar collapse -->

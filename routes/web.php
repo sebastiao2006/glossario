@@ -40,7 +40,7 @@ Route::get('/contact', function () {
     return view('pages.site.contact');
 })->name('site.contact');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/dashboard', function () {
         return view('pages.admin.dashboard');
