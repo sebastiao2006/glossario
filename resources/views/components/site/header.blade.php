@@ -29,7 +29,15 @@
                         <a class="page-scroll" href="#contact">Contacto</a>
                       </li>
                     </ul>
-                    <a href="#0" class="button button-sm radius-10 d-none d-lg-flex">Login</a>
+                    @guest
+                        <a href="{{ route('login') }}" class="btn btn-primary ms-3">Login</a>
+                    @endguest
+
+                    @auth
+                        <a href="{{ auth()->user()->role === 'admin' ? route('admin.dashboard') : route('site.home') }}" class="btn btn-primary ms-3">
+                            Painel
+                        </a>
+                    @endauth
                   </div>
                   <!-- navbar collapse -->
                 </nav>
