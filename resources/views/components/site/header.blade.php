@@ -29,7 +29,7 @@
                         <a class="page-scroll" href="#contact">Contacto</a>
                       </li>
                     </ul>
-                    <a href="#0" class="button button-sm radius-10 d-none d-lg-flex">Solicitar Consultoria</a>
+                    <a href="#0" class="button button-sm radius-10 d-none d-lg-flex">Login</a>
                   </div>
                   <!-- navbar collapse -->
                 </nav>

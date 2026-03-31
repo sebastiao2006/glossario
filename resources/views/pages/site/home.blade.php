@@ -144,29 +144,29 @@
               <img src="assets/img/about/18.png" alt="">
             </div>
           </div>
-<div class="col-lg-6">
-  <div class="about-content-wrapper">
-    <div class="section-title mb-40">
-      <h3 class="mb-25 wow fadeInUp" data-wow-delay=".2s">A excelência na gestão financeira começa aqui</h3>
-      <p class="wow fadeInUp" data-wow-delay=".4s">Deixe de perder tempo e recursos com processos desorganizados. Garantimos um serviço de contabilidade e fiscalidade eficiente, com foco na conformidade legal, organização e crescimento sustentável da sua empresa.</p>
-    </div>
-    <div class="counter-up-wrapper mb-40 wow fadeInUp" data-wow-delay=".6s">
-      <div class="single-counter">
-        <h4 class="countup" id="secondo1" cup-end="123" cup-append="">123</h4>
-        <h6>Clientes</h6>
-      </div>
-      <div class="single-counter">
-        <h4 class="countup" id="secondo2" cup-end="1434" cup-append="">1434</h4>
-        <h6>Processos</h6>
-      </div>
-      <div class="single-counter">
-        <h4 class="countup" id="secondo3" cup-end="134" cup-append="">134</h4>
-        <h6>Empresas</h6>
-      </div>
-    </div>
-    <a href="#0" class="button button-lg radius-3 wow fadeInUp" data-wow-delay=".7s">Saiba Mais</a>
-  </div>
-</div>
+        <div class="col-lg-6">
+          <div class="about-content-wrapper">
+            <div class="section-title mb-40">
+              <h3 class="mb-25 wow fadeInUp" data-wow-delay=".2s">A excelência na gestão financeira começa aqui</h3>
+              <p class="wow fadeInUp" data-wow-delay=".4s">Deixe de perder tempo e recursos com processos desorganizados. Garantimos um serviço de contabilidade e fiscalidade eficiente, com foco na conformidade legal, organização e crescimento sustentável da sua empresa.</p>
+            </div>
+            <div class="counter-up-wrapper mb-40 wow fadeInUp" data-wow-delay=".6s">
+              <div class="single-counter">
+                <h4 class="countup" id="secondo1" cup-end="123" cup-append="">123</h4>
+                <h6>Clientes</h6>
+              </div>
+              <div class="single-counter">
+                <h4 class="countup" id="secondo2" cup-end="1434" cup-append="">1434</h4>
+                <h6>Processos</h6>
+              </div>
+              <div class="single-counter">
+                <h4 class="countup" id="secondo3" cup-end="134" cup-append="">134</h4>
+                <h6>Empresas</h6>
+              </div>
+            </div>
+            <a href="#0" class="button button-lg radius-3 wow fadeInUp" data-wow-delay=".7s">Saiba Mais</a>
+          </div>
+        </div>
         </div>
       </div>
     </section>
@@ -315,14 +315,14 @@
     </section>
     <!-- ========================= team style-1 end ========================= -->
 
-              <div class="container pt-60 pb-60">
-                <h4 class="wow fadeInUp" data-wow-delay=".2s">You're Using</h4>
-                <h2 class="mb-30 wow fadeInUp" data-wow-delay=".4s">Free Lite Version of Template</h2>
-                <p class="mb-50 wow fadeInUp" data-wow-delay=".6s">Please, purchase full version of the template to get all sections, features and permission to remove footer credit</p>
-                <div class="buttons">
-                  <a href="https://rebrand.ly/flat-ud/" rel="nofollow" target="blank" class="button button-lg radius-10 wow fadeInUp" data-wow-delay=".7s">Purchase Now</a>
-                </div>
-              </div>
+      <div class="container pt-60 pb-60"> 
+        <h4 class="wow fadeInUp" data-wow-delay=".2s">Apoio Empresarial</h4>
+        <h2 class="mb-30 wow fadeInUp" data-wow-delay=".4s">Gestão Contabilística e Fiscal com Confiança</h2>
+        <p class="mb-50 wow fadeInUp" data-wow-delay=".6s">Prestamos serviços completos de contabilidade, fiscalidade, emissão de alvarás e ativação de NIF, assegurando que a sua empresa opere com eficiência e dentro das exigências legais.</p>
+        <div class="buttons">
+          <a href="https://rebrand.ly/flat-ud/" rel="nofollow" target="blank" class="button button-lg radius-10 wow fadeInUp" data-wow-delay=".7s">Solicitar Serviços</a>
+        </div>
+      </div>
 
     <!-- ========================= contact style-6 start ========================= -->
     <section id="contact" class="contact-section contact-style-6">
@@ -334,8 +334,8 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="single-input">
-                      <label for="name">Name</label>
-                      <input type="text" id="name" name="name" class="form-input" placeholder="Name">
+                      <label for="name">Nome</label>
+                      <input type="text" id="name" name="name" class="form-input" placeholder="Nome">
                       <i class="lni lni-user"></i>
                     </div>
                   </div>
@@ -348,28 +348,28 @@
                   </div>
                   <div class="col-md-6">
                     <div class="single-input">
-                      <label for="number">Number</label>
-                      <input type="text" id="number" name="number" class="form-input" placeholder="Number">
+                      <label for="number">Numero</label>
+                      <input type="text" id="number" name="number" class="form-input" placeholder="Numero">
                       <i class="lni lni-phone"></i>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="single-input">
-                      <label for="subject">Subject</label>
-                      <input type="text" id="subject" name="subject" class="form-input" placeholder="Subject">
+                      <label for="subject">Assunto</label>
+                      <input type="text" id="subject" name="subject" class="form-input" placeholder="Assunto">
                       <i class="lni lni-text-format"></i>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="single-input">
-                      <label for="message">Message</label>
-                      <textarea name="message" id="message" class="form-input" placeholder="Message" rows="6"></textarea>
+                      <label for="message">Mensagem</label>
+                      <textarea name="message" id="message" class="form-input" placeholder="Mensagem" rows="6"></textarea>
                       <i class="lni lni-comments-alt"></i>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-button">
-                      <button type="submit" class="button radius-10">Submit <i class="lni lni-telegram-original"></i> </button>
+                      <button type="submit" class="button radius-10">Enviar <i class="lni lni-telegram-original"></i> </button>
                     </div>
                   </div>
                 </div>
@@ -381,7 +381,7 @@
           <div class="col-lg-5 order-first order-lg-last">
             <div class="left-wrapper">
               <div class="section-title mb-40">
-                <h3 class="mb-15">Get in touch</h3>
+                <h3 class="mb-15">Fale Conosco</h3>
                 <p>Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
               </div>
               <div class="row">
@@ -391,7 +391,7 @@
                       <i class="lni lni-phone"></i>
                     </div>
                     <div class="text">
-                      <p>0045939863784</p>
+                      <p>925566642</p>
                     </div>
                   </div>
                 </div>
@@ -401,7 +401,7 @@
                       <i class="lni lni-envelope"></i>
                     </div>
                     <div class="text">
-                      <p>yourmail@gmail.com</p>
+                      <p>glossariofiscal@gmail.com</p>
                     </div>
                   </div>
                 </div>
@@ -411,7 +411,7 @@
                       <i class="lni lni-map-marker"></i>
                     </div>
                     <div class="text">
-                      <p>John's House, 13/5 Road, Sidny United State Of America</p>
+                      <p>Cidade do Sequele - Vila Cativa Rua 2</p>
                     </div>
                   </div>
                 </div>
