@@ -827,7 +827,7 @@ p {
 }
 
 .hero-section-wrapper-2 .hero-style-2 .hero-image img {
-  margin-bottom: 230px;
+  margin-bottom: 400px;
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -1465,7 +1465,7 @@ p {
     FOOTER-1 CSS
 ================================ */
 .footer-style-1 {
-  background: #F3F3F3;
+  background: radial-gradient(circle, #feb001, #fe9d01);
   padding-top: 80px;
 }
 
@@ -1486,7 +1486,7 @@ p {
 }
 
 .footer-style-1 .widget-wrapper .footer-widget .socials li a {
-  background: rgba(47, 128, 237, 0.4);
+  background: rgba(255, 255, 255, 0.4);
   margin: 0;
   margin-right: 10px;
   width: 44px;
@@ -1500,7 +1500,7 @@ p {
 
 .footer-style-1 .widget-wrapper .footer-widget h6 {
   font-weight: 600;
-  color: #585978;
+  color: #ffffff;
   margin-bottom: 35px;
   margin-top: 10px;
 }
@@ -1508,7 +1508,7 @@ p {
 .footer-style-1 .widget-wrapper .footer-widget .links li a {
   font-size: 16px;
   line-height: 32px;
-  color: #585978;
+  color: #ffffff;
 }
 
 .footer-style-1 .widget-wrapper .footer-widget .links li a:hover {
@@ -1516,7 +1516,7 @@ p {
 }
 
 .footer-style-1 .copyright-wrapper {
-  border-top: 1px solid rgba(88, 89, 120, 0.4);
+  border-top: 1px solid rgb(255, 255, 255);
   padding: 20px 0;
 }
 
@@ -1524,11 +1524,11 @@ p {
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  color: rgba(88, 89, 120, 0.6);
+  color: rgb(255, 255, 255);
 }
 
 .footer-style-1 .copyright-wrapper p a {
-  color: inherit;
+  color: white;
 }
 
 .footer-style-1 .copyright-wrapper p a:hover {
@@ -1536,7 +1536,7 @@ p {
 }
 
 .footer-style-1.footer-dark {
-  background: #323450;
+  background: #ffffff;
 }
 
 .footer-style-1.footer-dark .widget-wrapper .footer-widget p {
@@ -1548,7 +1548,7 @@ p {
 }
 
 .footer-style-1.footer-dark .widget-wrapper .footer-widget .socials li a {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(255, 255, 255);
 }
 
 .footer-style-1.footer-dark .widget-wrapper .footer-widget .socials li a:hover {

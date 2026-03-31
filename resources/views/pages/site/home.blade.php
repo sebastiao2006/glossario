@@ -53,7 +53,7 @@
             </div>
             <div class="col-lg-6">
               <div class="hero-image">
-                <img src="assets/img/hero/hero-2/baner.png" alt="" class="wow fadeInRight" data-wow-delay=".2s">
+                <img src="assets/img/hero/hero-2/baner2.png" alt="" class="wow fadeInRight" data-wow-delay=".2s">
 {{--                 <img src="assets/img/hero/hero-2/hero1.png" alt="" class="shape shape-1" width="180px"> --}}
               </div>
             </div>
@@ -172,15 +172,28 @@
     </section>
     <!-- ========================= about style-3 end ========================= -->
 
+        <!-- ========================= clients-logo start ========================= -->
+    <section class="clients-logo-section pt-100 pb-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="client-logo wow fadeInUp" data-wow-delay=".2s">
+              <img src="assets/img/clients/client1.png" alt="" class="w-100">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ========================= clients-logo end ========================= -->
 
-              <div class="container pt-60 pb-60">
-                <h4 class="wow fadeInUp" data-wow-delay=".2s">You're Using</h4>
-                <h2 class="mb-30 wow fadeInUp" data-wow-delay=".4s">Free Lite Version of Template</h2>
-                <p class="mb-50 wow fadeInUp" data-wow-delay=".6s">Please, purchase full version of the template to get all sections, features and permission to remove footer credit</p>
-                <div class="buttons">
-                  <a href="https://rebrand.ly/flat-ud/" rel="nofollow" target="blank" class="button button-lg radius-10 wow fadeInUp" data-wow-delay=".7s">Purchase Now</a>
-                </div>
-              </div>
+      <div class="container pt-60 pb-60">
+        <h4 class="wow fadeInUp" data-wow-delay=".2s">Consultoria Especializada</h4>
+        <h2 class="mb-30 wow fadeInUp" data-wow-delay=".4s">Soluções em Contabilidade e Fiscalidade</h2>
+        <p class="mb-50 wow fadeInUp" data-wow-delay=".6s">Apoiamos empresas e empreendedores com serviços completos de contabilidade, abertura de atividade, ativação de NIF e licenciamento, garantindo segurança e conformidade em cada etapa.</p>
+        <div class="buttons">
+          <a href="https://rebrand.ly/flat-ud/" rel="nofollow" target="blank" class="button button-lg radius-10 wow fadeInUp" data-wow-delay=".7s">Falar com um Consultor</a>
+        </div>
+      </div>
 
 
 		<!-- ========================= team style-1 start ========================= -->
@@ -202,8 +215,8 @@
                 <img src="assets/img/team/team-1/team-1.png" alt="">
               </div>
               <div class="info">
-                <h6>John Doe</h6>
-                <p>Product Designer</p>
+                <h6>Engracia Cardoso</h6>
+                <p>Contabilista</p>
                 <ul class="socials">
                   <li>
                     <a href="#0"> <i class="lni lni-facebook-filled"></i> </a>
@@ -227,8 +240,8 @@
                 <img src="assets/img/team/team-1/team-2.png" alt="">
               </div>
               <div class="info">
-                <h6>David Endow</h6>
-                <p>Creative Designer</p>
+                <h6>Sebastião Paulo</h6>
+                <p>Gestor de Projetos</p>
                 <ul class="socials">
                   <li>
                     <a href="#0"> <i class="lni lni-facebook-filled"></i> </a>
@@ -252,8 +265,8 @@
                 <img src="assets/img/team/team-1/team-3.png" alt="">
               </div>
               <div class="info">
-                <h6>Jonathon Smith</h6>
-                <p>Brand Designer</p>
+                <h6>Santa Cardoso</h6>
+                <p>Assistente de Contabilidade</p>
                 <ul class="socials">
                   <li>
                     <a href="#0"> <i class="lni lni-facebook-filled"></i> </a>
@@ -277,8 +290,8 @@
                 <img src="assets/img/team/team-1/team-4.png" alt="">
               </div>
               <div class="info">
-                <h6>Gray Simon</h6>
-                <p>Frontend Developer</p>
+                <h6>Lourenço Martins</h6>
+                <p>Técnico de Informática</p>
                 <ul class="socials">
                   <li>
                     <a href="#0"> <i class="lni lni-facebook-filled"></i> </a>
@@ -410,19 +423,7 @@
     </section>
     <!-- ========================= contact style-6 end ========================= -->
 
-    <!-- ========================= clients-logo start ========================= -->
-    <section class="clients-logo-section pt-100 pb-100">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="client-logo wow fadeInUp" data-wow-delay=".2s">
-              <img src="assets/img/clients/brands.svg" alt="" class="w-100">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ========================= clients-logo end ========================= -->
+
 
     <!-- ========================= scroll-top start ========================= -->
     <a href="#" class="scroll-top"> <i class="lni lni-chevron-up"></i> </a>
