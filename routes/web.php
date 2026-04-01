@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         return view('pages.admin.users.create');
     })->name('users.create');
 
+   Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+
     Route::get('/users/{id}/edit', function ($id) {
         return view('pages.admin.users.edit');
     })->name('users.edit');
@@ -74,5 +77,16 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         return view('pages.admin.settings.index');
     })->name('settings.index');
 });
+
+Route::prefix('funcionario')
+    ->name('funcionario.')
+    ->middleware(['auth', 'funcionario'])
+    ->group(function () {
+
+        Route::get('/dashboard', function () {
+            return view('pages.funcionario.dashboard');
+        })->name('dashboard');
+
+    });
 
 require __DIR__.'/auth.php';

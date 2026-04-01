@@ -64,5 +64,6 @@ protected $routeMiddleware = [
     'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     'admin' => \App\Http\Middleware\AdminMiddleware::class,
+    'funcionario' => \App\Http\Middleware\FuncionarioMiddleware::class,
 ];
 }

@@ -7,28 +7,29 @@
     <p class="page-subtitle">Adicione um novo usuário ao sistema.</p>
 
     <div class="admin-card">
-        <form>
+        <form method="POST" action="{{ route('admin.users.store') }}">
+            @csrf
             <div class="row g-3">
                 <div class="col-md-6">
                     <label class="form-label">Nome</label>
-                    <input type="text" class="form-control" placeholder="Digite o nome">
+                    <input type="text" name="name" class="form-control" placeholder="Digite o nome">
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control" placeholder="Digite o email">
+                    <input type="email" name="email" class="form-control" placeholder="Digite o email">
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Senha</label>
-                    <input type="password" class="form-control" placeholder="Digite a senha">
+                    <input type="password" name="password" class="form-control" placeholder="Digite a senha">
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Tipo de Usuário</label>
-                    <select class="form-select">
-                        <option>Admin</option>
-                        <option>Usuário</option>
+                    <select name="role" class="form-select">
+                        <option value="admin">Admin</option>
+                        <option value="funcionario">Funcionário</option>
                     </select>
                 </div>
 

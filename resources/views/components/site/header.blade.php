@@ -29,20 +29,28 @@
                         <a class="page-scroll" href="#contact">Contacto</a>
                       </li>
                     </ul>
-                    @guest
+                  {{--   @guest
                         <a href="{{ route('login') }}" class="btn btn-primary ms-3">Login</a>
-                    @endguest
+                    @endguest --}}
 
-                    @auth
-                        @if(auth()->user()->role === 'admin')
-                            <a href="{{ route('admin.dashboard') }}" class="btn btn-primary ms-3">Painel</a>
-                        @endif
+                   @auth
+                      @if(auth()->user()->role === 'admin')
+                          <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">
+                              Painel
+                          </a>
+                      @elseif(auth()->user()->role === 'funcionario')
+                          <a href="{{ route('funcionario.dashboard') }}" class="btn btn-primary">
+                              Painel
+                          </a>
+                      @endif
 
-                        <form method="POST" action="{{ route('logout') }}" class="d-inline ms-2">
-                            @csrf
-                            <button type="submit" class="btn btn-outline-danger">Sair</button>
-                        </form>
-                    @endauth
+                     {{--  <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                          @csrf
+                          <button type="submit" class="btn btn-danger">Sair</button>
+                      </form> --}}
+                  @else
+                      <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                  @endauth
                   </div>
                   <!-- navbar collapse -->
                 </nav>
