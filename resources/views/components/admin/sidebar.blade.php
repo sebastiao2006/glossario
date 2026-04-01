@@ -19,6 +19,10 @@
         <a href="{{ route('admin.settings.index') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
             <i class="bi bi-gear-fill"></i> Configurações
         </a>
+        
+        <a href="{{ route('admin.empresas.index') }}" class="nav-link">
+            <i class="bi bi-building"></i> Empresas
+        </a>
 
         <hr class="text-secondary my-4">
 
