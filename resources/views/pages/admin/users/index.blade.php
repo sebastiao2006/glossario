@@ -28,29 +28,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Sebastião Cardoso</td>
-                        <td>sebastiao@email.com</td>
-                        <td><span class="badge bg-primary">Admin</span></td>
-                        <td><span class="badge bg-success">Ativo</span></td>
-                        <td class="text-end">
-                            <a href="{{ route('admin.users.edit', 1) }}" class="btn btn-sm btn-outline-primary">Editar</a>
-                            <button class="btn btn-sm btn-outline-danger">Excluir</button>
-                        </td>
-                    </tr>
+                    @forelse($users as $user)
+                        <tr>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
 
-                    <tr>
-                        <td>2</td>
-                        <td>João Paulo</td>
-                        <td>joao@email.com</td>
-                        <td><span class="badge bg-secondary">Usuário</span></td>
-                        <td><span class="badge bg-success">Ativo</span></td>
-                        <td class="text-end">
-                            <a href="{{ route('admin.users.edit', 2) }}" class="btn btn-sm btn-outline-primary">Editar</a>
-                            <button class="btn btn-sm btn-outline-danger">Excluir</button>
-                        </td>
-                    </tr>
+                            <td>
+                                @if($user->role === 'admin')
+                                    <span class="badge bg-primary">Admin</span>
+                                @elseif($user->role === 'funcionario')
+                                    <span class="badge bg-secondary">Funcionário</span>
+                                @else
+                                    <span class="badge bg-light text-dark">{{ $user->role }}</span>
+                                @endif
+                            </td>
+
+                            <td>
+                                <span class="badge bg-success">Ativo</span>
+                            </td>
+
+                            <td class="text-end">
+                                <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+
+                                <form action="#" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-outline-danger">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">Nenhum usuário encontrado</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

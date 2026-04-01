@@ -47,9 +47,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         return view('pages.admin.dashboard');
     })->name('dashboard');
 
-    Route::get('/users', function () {
-        return view('pages.admin.users.index');
-    })->name('users.index');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
     Route::get('/users/create', function () {
         return view('pages.admin.users.create');
@@ -88,5 +86,7 @@ Route::prefix('funcionario')
         })->name('dashboard');
 
     });
+    
+
 
 require __DIR__.'/auth.php';

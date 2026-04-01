@@ -29,4 +29,12 @@ public function store(Request $request)
 
     return redirect()->back()->with('success', 'Usuário criado com sucesso!');
 }
+    
+   public function index()
+    {
+        $users = User::all();
+
+        return view('pages.admin.users.index', compact('users'));
+    }
+
 }
