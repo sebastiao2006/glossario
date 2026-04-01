@@ -77,7 +77,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     })->name('settings.index');
 });
 
-Route::prefix('funcionario')
+/* Route::prefix('funcionario')
     ->name('funcionario.')
     ->middleware(['auth', 'funcionario'])
     ->group(function () {
@@ -101,7 +101,7 @@ Route::prefix('funcionario')
             })->name('perfil');
 
         });
-    
+     */
 Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth', 'admin'])
@@ -112,6 +112,33 @@ Route::prefix('admin')
         Route::post('/empresas', [EmpresaController::class, 'store'])->name('empresas.store');
         Route::put('/empresas/{empresa}', [EmpresaController::class, 'update'])->name('empresas.update');
         Route::delete('/empresas/{empresa}', [EmpresaController::class, 'destroy'])->name('empresas.destroy');
+
+    });
+
+/*     Route::prefix('funcionario')
+    ->name('funcionario.')
+    ->middleware(['auth'])
+    ->group(function () {
+
+        Route::get('/empresas', [EmpresaController::class, 'listaFuncionario'])
+            ->name('empresas.index');
+
+    }); */
+    Route::prefix('funcionario')
+    ->name('funcionario.')
+    ->middleware(['auth'])
+    ->group(function () {
+
+        Route::get('/dashboard', function () {
+            return view('pages.funcionario.dashboard');
+        })->name('dashboard');
+
+        Route::get('/perfil', function () {
+            return view('pages.funcionario.perfil');
+        })->name('perfil');
+
+        Route::get('/empresas', [EmpresaController::class, 'listaFuncionario'])
+            ->name('empresas.index');
 
     });
 

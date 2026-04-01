@@ -68,4 +68,11 @@ class EmpresaController extends Controller
 
         return redirect()->back()->with('success', 'Empresa excluída!');
     }
+
+    public function listaFuncionario()
+    {
+        $empresas = Empresa::latest()->get();
+
+        return view('pages.funcionario.empresas.index', compact('empresas'));
+    }
 }
