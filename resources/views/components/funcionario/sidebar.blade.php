@@ -9,7 +9,7 @@
             <i class="bi bi-grid-fill"></i> Dashboard
         </a> 
         <a href="{{ route('funcionario.empresas.index') }}" class="nav-link {{ request()->routeIs('funcionario.empresas') ? 'active' : '' }}">
-            Empresas
+            <i class="bi bi-building-fill"></i> Empresas
         </a>
 
         <a href="{{ route('funcionario.perfil') }}" class="nav-link {{ request()->routeIs('funcionario.perfil') ? 'active' : '' }}">
