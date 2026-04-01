@@ -110,6 +110,8 @@ Route::prefix('admin')
         Route::get('/empresas', [EmpresaController::class, 'index'])->name('empresas.index');
         Route::get('/empresas/create', [EmpresaController::class, 'create'])->name('empresas.create');
         Route::post('/empresas', [EmpresaController::class, 'store'])->name('empresas.store');
+        Route::put('/empresas/{empresa}', [EmpresaController::class, 'update'])->name('empresas.update');
+        Route::delete('/empresas/{empresa}', [EmpresaController::class, 'destroy'])->name('empresas.destroy');
 
     });
 

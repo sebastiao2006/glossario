@@ -36,7 +36,36 @@ class EmpresaController extends Controller
             'senha_portal' => $request->senha_portal,
         ]);
 
-        return redirect()->route('pages.admin.empresas.index')
+        return redirect()->route('admin.empresas.index')
             ->with('success', 'Empresa cadastrada com sucesso!');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $empresa = Empresa::findOrFail($id);
+
+        $request->validate([
+            'nome' => 'required',
+            'nif' => 'required|unique:empresas,nif,' . $empresa->id,
+            'telefone' => 'required',
+            'localizacao' => 'required',
+        ]);
+
+        $empresa->update([
+            'nome' => $request->nome,
+            'nif' => $request->nif,
+            'telefone' => $request->telefone,
+            'localizacao' => $request->localizacao,
+        ]);
+
+        return redirect()->back()->with('success', 'Empresa atualizada!');
+    }
+
+    public function destroy($id)
+    {
+        $empresa = Empresa::findOrFail($id);
+        $empresa->delete();
+
+        return redirect()->back()->with('success', 'Empresa excluída!');
     }
 }
