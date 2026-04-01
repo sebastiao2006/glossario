@@ -18,6 +18,7 @@ public function store(Request $request)
         'email' => 'required|email|unique:users,email',
         'password' => 'required|min:6',
         'role' => 'required'
+        
     ]);
 
     User::create([
@@ -25,6 +26,14 @@ public function store(Request $request)
         'email' => $request->email,
         'password' => Hash::make($request->password),
         'role' => $request->role,
+
+        // campos de funcionário
+        'cargo' => $request->cargo,
+        'idade' => $request->idade,
+        'id_funcionario' => $request->id_funcionario,
+        'numero_computador' => $request->numero_computador,
+        'senha_computador' => $request->senha_computador,
+        'fim_contrato' => $request->fim_contrato,
     ]);
 
     return redirect()->back()->with('success', 'Usuário criado com sucesso!');

@@ -9,7 +9,9 @@
     <div class="admin-card">
         <form method="POST" action="{{ route('admin.users.store') }}">
             @csrf
+
             <div class="row g-3">
+
                 <div class="col-md-6">
                     <label class="form-label">Nome</label>
                     <input type="text" name="name" class="form-control" placeholder="Digite o nome">
@@ -33,9 +35,42 @@
                     </select>
                 </div>
 
+                <!-- CAMPOS DO FUNCIONÁRIO (AGORA DENTRO DO FORM) -->
+
+                <div class="col-md-6">
+                    <label>Cargo</label>
+                    <input type="text" name="cargo" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label>Idade</label>
+                    <input type="number" name="idade" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label>ID Funcionário</label>
+                    <input type="text" name="id_funcionario" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label>Nº Computador</label>
+                    <input type="text" name="numero_computador" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label>Senha Computador</label>
+                    <input type="text" name="senha_computador" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label>Fim do Contrato</label>
+                    <input type="date" name="fim_contrato" class="form-control">
+                </div>
+
                 <div class="col-12 mt-3">
                     <button type="submit" class="btn btn-primary">Salvar Usuário</button>
                 </div>
+
             </div>
         </form>
     </div>

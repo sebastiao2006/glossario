@@ -10,7 +10,11 @@
 <body>
 
     <div class="admin-wrapper">
-        @include('components.admin.sidebar')
+        @if(auth()->user()->role === 'admin')
+            @include('components.admin.sidebar')
+        @elseif(auth()->user()->role === 'funcionario')
+            @include('components.funcionario.sidebar')
+        @endif
 
         <div class="admin-main">
             @include('components.admin.navbar')
