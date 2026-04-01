@@ -15,4 +15,8 @@ class Empresa extends Model
     'localizacao',
     'senha_portal',
 ];
+public function tasks()
+{
+    return $this->hasMany(Task::class);
+}
 }

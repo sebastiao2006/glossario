@@ -11,6 +11,11 @@
         <a href="{{ route('funcionario.empresas.index') }}" class="nav-link {{ request()->routeIs('funcionario.empresas') ? 'active' : '' }}">
             <i class="bi bi-building-fill"></i> Empresas
         </a>
+        <li>
+        <a href="{{ route('funcionario.tarefas.index') }}" class="nav-link">
+            <i class="bi bi-list-task"></i> Tarefas
+        </a>
+        </li>
 
         <a href="{{ route('funcionario.perfil') }}" class="nav-link {{ request()->routeIs('funcionario.perfil') ? 'active' : '' }}">
             <i class="bi bi-person-fill"></i> Meu Perfil

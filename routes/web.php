@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\EmpresaController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,18 +113,14 @@ Route::prefix('admin')
         Route::post('/empresas', [EmpresaController::class, 'store'])->name('empresas.store');
         Route::put('/empresas/{empresa}', [EmpresaController::class, 'update'])->name('empresas.update');
         Route::delete('/empresas/{empresa}', [EmpresaController::class, 'destroy'])->name('empresas.destroy');
+        Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+        Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+        
 
     });
+    
 
-/*     Route::prefix('funcionario')
-    ->name('funcionario.')
-    ->middleware(['auth'])
-    ->group(function () {
 
-        Route::get('/empresas', [EmpresaController::class, 'listaFuncionario'])
-            ->name('empresas.index');
-
-    }); */
     Route::prefix('funcionario')
     ->name('funcionario.')
     ->middleware(['auth'])
@@ -139,7 +136,12 @@ Route::prefix('admin')
 
         Route::get('/empresas', [EmpresaController::class, 'listaFuncionario'])
             ->name('empresas.index');
+                    // 👉 ADICIONA ESTA ROTA
+        Route::get('/tarefas', [TaskController::class, 'minhasTarefas'])
+            ->name('tarefas.index');
 
     });
+
+   
 
 require __DIR__.'/auth.php';

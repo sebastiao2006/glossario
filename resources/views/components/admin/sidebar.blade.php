@@ -15,6 +15,9 @@
 {{--         <a href="{{ route('admin.posts.index') }}" class="nav-link {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
             <i class="bi bi-file-earmark-text-fill"></i> Posts
         </a> --}}
+        <a href="{{ route('admin.tasks.index') }}" class="nav-link">
+            <i class="bi bi-list-task"></i> Tarefas
+        </a>
 
         <a href="{{ route('admin.settings.index') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
             <i class="bi bi-gear-fill"></i> Configurações
