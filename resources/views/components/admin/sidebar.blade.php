@@ -12,9 +12,9 @@
             <i class="bi bi-people-fill"></i> Usuários
         </a>
 
-        <a href="{{ route('admin.posts.index') }}" class="nav-link {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
+{{--         <a href="{{ route('admin.posts.index') }}" class="nav-link {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
             <i class="bi bi-file-earmark-text-fill"></i> Posts
-        </a>
+        </a> --}}
 
         <a href="{{ route('admin.settings.index') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
             <i class="bi bi-gear-fill"></i> Configurações
