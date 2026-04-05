@@ -51,4 +51,18 @@ return view('pages.admin.tasks.index', compact('tasks', 'users', 'empresas'));
 
         return view('employee.tasks', compact('tasks'));
     }
+
+    public function updateStatus(Request $request, $id)
+{
+    $task = Task::findOrFail($id);
+
+    $request->validate([
+        'status' => 'required|in:pendente,em_progresso,concluida',
+    ]);
+
+    $task->status = $request->status;
+    $task->save();
+
+    return back()->with('success', 'Status atualizado com sucesso!');
+}
 }

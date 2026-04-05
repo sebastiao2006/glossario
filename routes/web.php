@@ -140,8 +140,13 @@ Route::prefix('admin')
                     // 👉 ADICIONA ESTA ROTA
         Route::get('/tarefas', [TaskController::class, 'minhasTarefas'])
             ->name('tarefas.index');
+            
 
     });
+
+            Route::patch('/tasks/{id}/status', [TaskController::class, 'updateStatus'])
+        ->name('tasks.updateStatus');
+
 
 
 
