@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\EmpresaController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,6 +143,9 @@ Route::prefix('admin')
 
     });
 
-   
+
+
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])
+    ->name('admin.dashboard');
 
 require __DIR__.'/auth.php';
