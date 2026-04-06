@@ -85,6 +85,8 @@ Route::prefix('admin')
         Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
             Route::get('/produtividade', [DashboardController::class, 'produtividade'])
         ->name('produtividade');
+        Route::put('/empresas/{id}/atribuir', [EmpresaController::class, 'atribuirUser'])
+    ->name('empresas.atribuir');
         
 
     });
@@ -121,5 +123,7 @@ Route::prefix('admin')
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])
     ->name('admin.dashboard');
+
+
 
 require __DIR__.'/auth.php';

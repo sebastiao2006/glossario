@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class EmpresaController extends Controller
 {
     public function index()
     {
-        $empresas = Empresa::latest()->get();
-        return view('pages.admin.empresas.index', compact('empresas'));
+        $empresas = Empresa::with('user')->latest()->get(); // 👈 relação
+        $users = User::all(); // 👈 lista de funcionários
+
+        return view('pages.admin.empresas.index', compact('empresas', 'users'));
     }
 
     public function create()
@@ -40,26 +43,27 @@ class EmpresaController extends Controller
             ->with('success', 'Empresa cadastrada com sucesso!');
     }
 
-    public function update(Request $request, $id)
-    {
-        $empresa = Empresa::findOrFail($id);
+public function update(Request $request, $id)
+{
+    $empresa = Empresa::findOrFail($id);
 
-        $request->validate([
-            'nome' => 'required',
-            'nif' => 'required|unique:empresas,nif,' . $empresa->id,
-            'telefone' => 'required',
-            'localizacao' => 'required',
-        ]);
+    $request->validate([
+        'nome' => 'required',
+        'nif' => 'required|unique:empresas,nif,' . $empresa->id,
+        'telefone' => 'required',
+        'localizacao' => 'required',
+    ]);
 
-        $empresa->update([
-            'nome' => $request->nome,
-            'nif' => $request->nif,
-            'telefone' => $request->telefone,
-            'localizacao' => $request->localizacao,
-        ]);
+    $empresa->update([
+        'nome' => $request->nome,
+        'nif' => $request->nif,
+        'telefone' => $request->telefone,
+        'localizacao' => $request->localizacao,
+        'user_id' => $empresa->user_id, // 👈 MANTÉM O RESPONSÁVEL
+    ]);
 
-        return redirect()->back()->with('success', 'Empresa atualizada!');
-    }
+    return redirect()->back()->with('success', 'Empresa atualizada!');
+}
 
     public function destroy($id)
     {
@@ -75,4 +79,20 @@ class EmpresaController extends Controller
 
         return view('pages.funcionario.empresas.index', compact('empresas'));
     }
+
+
+    public function atribuirUser(Request $request, $id)
+{
+    $empresa = Empresa::findOrFail($id);
+
+    $request->validate([
+        'user_id' => 'nullable|exists:users,id',
+    ]);
+
+    $empresa->update([
+        'user_id' => $request->user_id,
+    ]);
+
+    return redirect()->back()->with('success', 'Responsável atribuído!');
+}
 }

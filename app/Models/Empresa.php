@@ -14,15 +14,21 @@ class Empresa extends Model
     'telefone',
     'localizacao',
     'senha_portal',
+    'user_id' // 👈 IMPORTANTE
 ];
 public function tasks()
 {
     return $this->hasMany(Task::class);
 }
 
-public function users()
+/* public function users()
 {
     return $this->belongsToMany(User::class);
+} */
+public function user()
+{
+    return $this->belongsTo(User::class)->withDefault([
+        'name' => 'Não atribuído'
+    ]);
 }
-
 }
