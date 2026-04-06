@@ -17,15 +17,6 @@ use App\Http\Controllers\Admin\DashboardController;
 |
 */
 
-/* Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
- 
-require __DIR__.'/auth.php'; */
 
 
 Route::get('/', function () {
@@ -79,31 +70,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     })->name('settings.index');
 });
 
-/* Route::prefix('funcionario')
-    ->name('funcionario.')
-    ->middleware(['auth', 'funcionario'])
-    ->group(function () {
 
-        Route::get('/dashboard', function () {
-            return view('pages.funcionario.dashboard');
-        })->name('dashboard');
-
-    });
-    Route::prefix('funcionario')
-        ->name('funcionario.')
-        ->middleware(['auth', 'funcionario'])
-        ->group(function () {
-
-            Route::get('/dashboard', function () {
-                return view('pages.funcionario.dashboard');
-            })->name('dashboard');
-
-            Route::get('/perfil', function () {
-                return view('pages.funcionario.perfil');
-            })->name('perfil');
-
-        });
-     */
 Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth', 'admin'])
@@ -116,6 +83,8 @@ Route::prefix('admin')
         Route::delete('/empresas/{empresa}', [EmpresaController::class, 'destroy'])->name('empresas.destroy');
         Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
         Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+            Route::get('/produtividade', [DashboardController::class, 'produtividade'])
+        ->name('produtividade');
         
 
     });

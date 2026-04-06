@@ -40,5 +40,20 @@ public function index()
     ));
 
 }
+public function produtividade()
+{
+    $usuarios = User::where('role', 'funcionario')
+        ->withCount([
+            'tasks',
+            'empresas',
+            'tasks as tarefas_concluidas' => function ($query) {
+                $query->where('status', 'concluida');
+            }
+        ])
+        ->get();
 
+    $maisProdutivo = $usuarios->sortByDesc('tarefas_concluidas')->first();
+
+    return view('pages.admin.produtividade', compact('usuarios', 'maisProdutivo'));
+}
 }

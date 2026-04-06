@@ -26,6 +26,10 @@
         <a href="{{ route('admin.empresas.index') }}" class="nav-link">
             <i class="bi bi-building"></i> Empresas
         </a>
+       
+        <a href="{{ route('admin.produtividade') }}" class="nav-link">
+            <i class="bi bi-graph-up"></i> Produtividade
+        </a>
 
         <hr class="text-secondary my-4">
 
