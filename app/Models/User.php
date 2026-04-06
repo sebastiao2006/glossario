@@ -63,4 +63,6 @@ public function empresas()
 {
     return $this->hasMany(Empresa::class, 'user_id');
 }
+
+
 }

@@ -38,6 +38,7 @@
                         <th>Início</th>
                         <th>Fim</th>
                         <th>Status</th>
+                        <th>Prazo</th>
                     </tr>
                 </thead>
 
@@ -50,7 +51,20 @@
                             <td>{{ $task->data_inicio }}</td>
                             <td>{{ $task->data_fim }}</td>
                             <td>
-                                <span class="badge bg-info">{{ $task->status }}</span>
+                                <span class="badge {{ $task->status_formatado['classe'] }}">
+    {{ $task->status_formatado['texto'] }}
+</span>
+                            </td>
+                            <td>
+                                @if($task->prazo_formatado)
+                                    <span class="badge {{ $task->prazo_formatado['classe'] }}">
+                                        {{ $task->prazo_formatado['texto'] }}
+                                    </span>
+                                @else
+                                    <span class="badge bg-secondary">
+                                        Sem prazo
+                                    </span>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
