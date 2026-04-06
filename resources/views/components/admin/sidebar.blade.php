@@ -26,6 +26,13 @@
         <a href="{{ route('admin.empresas.index') }}" class="nav-link">
             <i class="bi bi-building"></i> Empresas
         </a>
+        
+        <a href="{{ route('admin.documents.index') }}"
+        class="nav-link {{ request()->routeIs('admin.documents.*') ? 'active' : '' }}">
+            
+            <i class="bi bi-folder2-open"></i>
+            Documentos
+        </a>
        
         <a href="{{ route('admin.produtividade') }}" class="nav-link">
             <i class="bi bi-graph-up"></i> Produtividade

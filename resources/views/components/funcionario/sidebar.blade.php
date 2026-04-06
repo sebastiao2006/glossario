@@ -16,6 +16,15 @@
             <i class="bi bi-list-task"></i> Tarefas
         </a>
         </li>
+            
+
+    <a href="{{ route('funcionario.documents.index') }}"
+       class="nav-link {{ request()->routeIs('funcionario.documents.*') ? 'active' : '' }}">
+        
+        <i class="bi bi-file-earmark-text"></i>
+        Documentos
+    </a>
+
 
         <a href="{{ route('funcionario.perfil') }}" class="nav-link {{ request()->routeIs('funcionario.perfil') ? 'active' : '' }}">
             <i class="bi bi-person-fill"></i> Meu Perfil

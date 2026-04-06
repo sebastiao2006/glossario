@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\EmpresaController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Admin\DashboardController;
-
+use App\Http\Controllers\Admin\DocumentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,6 +87,7 @@ Route::prefix('admin')
         ->name('produtividade');
         Route::put('/empresas/{id}/atribuir', [EmpresaController::class, 'atribuirUser'])
     ->name('empresas.atribuir');
+     Route::resource('documents', DocumentController::class);
         
 
     });
@@ -112,7 +113,8 @@ Route::prefix('admin')
         Route::get('/tarefas', [TaskController::class, 'minhasTarefas'])
             ->name('tarefas.index');
             
-
+Route::get('/meus-documentos', [DocumentController::class, 'meusDocumentos'])
+    ->name('documents.index');
     });
 
             Route::patch('/tasks/{id}/status', [TaskController::class, 'updateStatus'])
