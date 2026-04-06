@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Empresa extends Model
 {
@@ -25,10 +26,17 @@ public function tasks()
 {
     return $this->belongsToMany(User::class);
 } */
-public function user()
+/* public function user()
 {
     return $this->belongsTo(User::class)->withDefault([
         'name' => 'Não atribuído'
     ]);
+} */
+
+
+
+public function user()
+{
+    return $this->belongsTo(User::class, 'user_id');
 }
 }

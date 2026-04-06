@@ -98,9 +98,9 @@ Route::prefix('admin')
     ->middleware(['auth'])
     ->group(function () {
 
-        Route::get('/dashboard', function () {
-            return view('pages.funcionario.dashboard');
-        })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'funcionario'])
+        ->name('dashboard');
+
 
         Route::get('/perfil', function () {
             return view('pages.funcionario.perfil');

@@ -3,7 +3,7 @@
 @section('title', 'Empresas')
 
 @section('content')
-<h1>Empresas</h1>
+{{-- <h1>Empresas</h1> --}}
 
 <a href="{{ route('admin.empresas.create') }}" class="btn btn-primary mb-3">
     Nova Empresa

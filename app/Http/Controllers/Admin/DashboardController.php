@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -56,4 +57,29 @@ public function produtividade()
 
     return view('pages.admin.produtividade', compact('usuarios', 'maisProdutivo'));
 }
+
+
+public function funcionario()
+{
+    $user = Auth::user();
+
+    $tarefas = $user->tasks()->get();
+
+    $totalTarefas = $tarefas->count();
+
+    $tarefasPequenas = $user->tasks()
+        ->where('status', 'pendente')
+        ->get();
+
+    // 🔥 MUITO IMPORTANTE: carregar empresas corretamente
+    $empresas = $user->empresas()->get();
+
+    return view('pages.funcionario.dashboard', compact(
+        'tarefas',
+        'tarefasPequenas',
+        'totalTarefas',
+        'empresas'
+    ));
+}
+
 }

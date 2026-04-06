@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Empresa;
+
 
 class User extends Authenticatable
 {
@@ -55,8 +57,10 @@ class User extends Authenticatable
         
     }
 
-    public function empresas()
-    {
-        return $this->belongsToMany(Empresa::class);
-    }
+
+
+public function empresas()
+{
+    return $this->hasMany(Empresa::class, 'user_id');
+}
 }
