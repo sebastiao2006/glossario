@@ -1,6 +1,6 @@
 <div class="admin-sidebar">
     <a href="{{ route('admin.dashboard') }}" class="brand">
-        Kivula Admin
+        GFC Admin
     </a>
 
     <nav class="nav flex-column">
