@@ -29,6 +29,16 @@
         <i class="bi bi-list-task"></i> Tarefas
     </a>
 
+    <a href="{{ route('admin.funcionarios.empresas') }}"
+    class="flex items-center gap-3 px-4 py-2 rounded-lg font-medium transition
+    {{ request()->routeIs('admin.funcionarios.empresas') 
+        ? 'bg-white text-[#ff914d] shadow-md' 
+        : 'text-white hover:bg-white/20' }}">
+
+        <i class="bi bi-building"></i>
+        Funcionários & Empresas
+    </a>
+
     <a href="{{ route('admin.settings.index') }}"
        class="flex items-center gap-3 px-4 py-2 rounded-lg font-medium transition
        {{ request()->routeIs('admin.settings.*') 

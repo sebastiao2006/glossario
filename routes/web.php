@@ -7,6 +7,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Funcionario\MyEmpresaController;
+use App\Http\Controllers\Admin\FuncionariosEmpresasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,6 +90,9 @@ Route::prefix('admin')
         Route::put('/empresas/{id}/atribuir', [EmpresaController::class, 'atribuirUser'])
     ->name('empresas.atribuir');
      Route::resource('documents', DocumentController::class);
+
+Route::get('/funcionarios-empresas', [FuncionariosEmpresasController::class, 'index'])
+    ->name('funcionarios.empresas');
         
 
     });
@@ -141,5 +145,10 @@ Route::post('/my-empresas/{empresa}/finalizar',
 Route::post('/my-empresas/{empresa}/regularizacao/update',
     [MyEmpresaController::class, 'updateRegularizacao']
 )->name('funcionario.update.regularizacao');
+
+
+
+
+
 
 require __DIR__.'/auth.php';

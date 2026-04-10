@@ -54,8 +54,11 @@ public function finalizar($empresaId)
         ->where('user_id', auth()->id())
         ->firstOrFail();
 
-    $empresa->update([
-        'status' => 'finalizada'
+    $empresa->regularizacoes()->create([
+        'user_id' => auth()->id(),
+        'situacao' => 'finalizada',
+        'checklist' => json_encode([]),
+        'status' => 'finalizada',
     ]);
 
     return back()->with('success', 'Empresa finalizada!');

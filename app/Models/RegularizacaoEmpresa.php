@@ -16,4 +16,9 @@ class RegularizacaoEmpresa extends Model
     'checklist',
     'documentos',
 ];
+
+public function empresa()
+{
+    return $this->belongsTo(Empresa::class);
+}
 }
