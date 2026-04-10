@@ -44,6 +44,15 @@
                : 'text-white hover:bg-white/20' }}">
             <i class="bi bi-folder2-open"></i> Documentos
         </a>
+        <!-- My Empresas -->
+        <a href="{{ route('funcionario.my-empresas') }}"
+        class="flex items-center gap-3 px-4 py-2 rounded-lg font-medium transition
+        {{ request()->routeIs('funcionario.my-empresas') 
+            ? 'bg-white text-[#ff914d] shadow-md' 
+            : 'text-white hover:bg-white/20' }}">
+            
+            <i class="bi bi-building"></i> My Empresas
+        </a>
 
         <!-- Perfil -->
         <a href="{{ route('funcionario.perfil') }}"

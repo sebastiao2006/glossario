@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\EmpresaController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Funcionario\MyEmpresaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -126,6 +127,19 @@ Route::get('/meus-documentos', [DocumentController::class, 'meusDocumentos'])
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])
     ->name('admin.dashboard');
 
+    Route::get('/my-empresas', [MyEmpresaController::class, 'index'])
+    ->name('funcionario.my-empresas');
 
+Route::post('/my-empresas/{empresa}/regularizar',
+    [MyEmpresaController::class, 'storeRegularizacao']
+)->name('funcionario.regularizar.store');
+
+Route::post('/my-empresas/{empresa}/finalizar',
+    [MyEmpresaController::class, 'finalizar']
+)->name('funcionario.finalizar');
+
+Route::post('/my-empresas/{empresa}/regularizacao/update',
+    [MyEmpresaController::class, 'updateRegularizacao']
+)->name('funcionario.update.regularizacao');
 
 require __DIR__.'/auth.php';

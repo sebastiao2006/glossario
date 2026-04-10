@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\RegularizacaoEmpresa;
 
 class Empresa extends Model
 {
@@ -42,5 +43,9 @@ public function user()
 public function documents()
 {
     return $this->hasMany(Document::class);
+}
+public function regularizacoes()
+{
+    return $this->hasMany(RegularizacaoEmpresa::class);
 }
 }
