@@ -4,35 +4,45 @@
 
 @section('content')
 
-<div class="container mt-4">
+<div class="p-6 space-y-6 bg-gray-100 min-h-screen">
 
-    <!-- BOTÃO PARA ABRIR MODAL -->
-    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#taskModal">
-        + Nova Tarefa
-    </button>
+    {{-- Header + botão --}}
+    <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold text-gray-800">Tarefas</h1>
 
-    <!-- FILTRO PEQUENO -->
-<form method="GET" class="mb-3 d-flex align-items-center gap-2">
-    <select name="user_id" onchange="this.form.submit()" class="form-select form-select-sm w-auto">
-        
-        <!-- OPÇÃO PARA VER TODOS -->
-        <option value="">Todos os funcionários</option>
+        <button data-bs-toggle="modal" data-bs-target="#taskModal"
+            class="px-4 py-2 rounded-lg text-white shadow-md
+                   bg-gradient-to-r from-[#feae1b] to-[#ff914d] hover:opacity-90 transition">
+            + Nova Tarefa
+        </button>
+    </div>
 
-        @foreach($users as $user)
-            <option value="{{ $user->id }}" {{ request('user_id') == $user->id ? 'selected' : '' }}>
-                {{ $user->name }}
-            </option>
-        @endforeach
-    </select>
-</form>
+    {{-- Filtro --}}
+    <form method="GET" class="flex items-center gap-3">
+        <select name="user_id"
+            onchange="this.form.submit()"
+            class="px-3 py-2 rounded-lg border border-gray-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300">
 
-    <!-- TABELA ESTILIZADA -->
-    <div class="card shadow-sm">
-        <div class="card-body p-0">
-            <table class="table table-hover mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th>Tarefa</th>
+            <option value="">Todos os funcionários</option>
+
+            @foreach($users as $user)
+                <option value="{{ $user->id }}" {{ request('user_id') == $user->id ? 'selected' : '' }}>
+                    {{ $user->name }}
+                </option>
+            @endforeach
+        </select>
+    </form>
+
+    {{-- 📊 Tabela --}}
+    <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+
+                {{-- Header --}}
+                <thead>
+                    <tr class="bg-gray-50 text-gray-500 text-sm">
+                        <th class="px-4 py-3">Tarefa</th>
                         <th>Funcionário</th>
                         <th>Empresa</th>
                         <th>Início</th>
@@ -42,57 +52,84 @@
                     </tr>
                 </thead>
 
+                {{-- Body --}}
                 <tbody>
                     @foreach($tasks as $task)
-                        <tr>
-                            <td>{{ $task->titulo }}</td>
-                            <td>{{ $task->user->name }}</td>
-                            <td>{{ $task->empresa->nome }}</td>
-                            <td>{{ $task->data_inicio }}</td>
-                            <td>{{ $task->data_fim }}</td>
-                            <td>
-                                <span class="badge {{ $task->status_formatado['classe'] }}">
-    {{ $task->status_formatado['texto'] }}
-</span>
-                            </td>
-                            <td>
-                                @if($task->prazo_formatado)
-                                    <span class="badge {{ $task->prazo_formatado['classe'] }}">
-                                        {{ $task->prazo_formatado['texto'] }}
-                                    </span>
-                                @else
-                                    <span class="badge bg-secondary">
-                                        Sem prazo
-                                    </span>
-                                @endif
-                            </td>
-                        </tr>
+
+                    <tr class="border-b hover:bg-gray-50 transition">
+
+                        <td class="px-4 py-3 font-medium text-gray-800">
+                            {{ $task->titulo }}
+                        </td>
+
+                        <td class="text-gray-600">
+                            {{ $task->user->name }}
+                        </td>
+
+                        <td class="text-gray-600">
+                            {{ $task->empresa->nome }}
+                        </td>
+
+                        <td class="text-gray-500">
+                            {{ $task->data_inicio }}
+                        </td>
+
+                        <td class="text-gray-500">
+                            {{ $task->data_fim }}
+                        </td>
+
+                        {{-- Status --}}
+                        <td>
+                            <span class="px-3 py-1 text-xs rounded-full text-white font-bold {{ $task->status_formatado['classe'] }}">
+                                {{ $task->status_formatado['texto'] }}
+                            </span>
+                        </td>
+
+                        {{-- Prazo --}}
+                        <td>
+                            @if($task->prazo_formatado)
+                                <span class="px-3 py-1 text-xs rounded-full text-white font-bold {{ $task->prazo_formatado['classe'] }}">
+                                    {{ $task->prazo_formatado['texto'] }}
+                                </span>
+                            @else
+                                <span class="px-3 py-1 text-xs rounded-full bg-gray-200 text-gray-600">
+                                    Sem prazo
+                                </span>
+                            @endif
+                        </td>
+
+                    </tr>
+
                     @endforeach
                 </tbody>
+
             </table>
         </div>
+
     </div>
 
 </div>
 
-<!-- MODAL -->
+{{-- 🧾 MODAL --}}
 <div class="modal fade" id="taskModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+        <div class="modal-content rounded-2xl">
 
-            <div class="modal-header">
-                <h5 class="modal-title">Nova Tarefa</h5>
+            {{-- Header --}}
+            <div class="modal-header border-0">
+                <h5 class="modal-title font-semibold">Nova Tarefa</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
             <form action="{{ route('admin.tasks.store') }}" method="POST">
                 @csrf
 
-                <div class="modal-body row g-3">
+                {{-- Body --}}
+                <div class="modal-body grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                    <div class="col-md-6">
-                        <label class="form-label">Funcionário</label>
-                        <select name="user_id" class="form-select" required>
+                    <div>
+                        <label class="text-sm text-gray-600">Funcionário</label>
+                        <select name="user_id" class="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300">
                             <option value="">Selecionar</option>
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -100,9 +137,9 @@
                         </select>
                     </div>
 
-                    <div class="col-md-6">
-                        <label class="form-label">Empresa</label>
-                        <select name="empresa_id" class="form-select" required>
+                    <div>
+                        <label class="text-sm text-gray-600">Empresa</label>
+                        <select name="empresa_id" class="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300">
                             <option value="">Selecionar</option>
                             @foreach($empresas as $empresa)
                                 <option value="{{ $empresa->id }}">{{ $empresa->nome }}</option>
@@ -110,35 +147,47 @@
                         </select>
                     </div>
 
-                    <div class="col-md-12">
-                        <label class="form-label">Título</label>
-                        <input type="text" name="titulo" class="form-control" required>
+                    <div class="md:col-span-2">
+                        <label class="text-sm text-gray-600">Título</label>
+                        <input type="text" name="titulo"
+                               class="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300">
                     </div>
 
-                    <div class="col-md-12">
-                        <label class="form-label">Descrição</label>
-                        <textarea name="descricao" class="form-control"></textarea>
+                    <div class="md:col-span-2">
+                        <label class="text-sm text-gray-600">Descrição</label>
+                        <textarea name="descricao"
+                                  class="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300"></textarea>
                     </div>
 
-                    <div class="col-md-6">
-                        <label class="form-label">Data Início</label>
-                        <input type="date" name="data_inicio" class="form-control" required>
+                    <div>
+                        <label class="text-sm text-gray-600">Data Início</label>
+                        <input type="date" name="data_inicio"
+                               class="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300">
                     </div>
 
-                    <div class="col-md-6">
-                        <label class="form-label">Data Fim</label>
-                        <input type="date" name="data_fim" class="form-control" required>
+                    <div>
+                        <label class="text-sm text-gray-600">Data Fim</label>
+                        <input type="date" name="data_fim"
+                               class="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300">
                     </div>
 
                 </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                {{-- Footer --}}
+                <div class="modal-footer border-0">
+
+                    <button type="button"
+                        class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition"
+                        data-bs-dismiss="modal">
                         Cancelar
                     </button>
-                    <button type="submit" class="btn btn-primary">
+
+                    <button type="submit"
+                        class="px-4 py-2 rounded-lg text-white shadow-md
+                               bg-gradient-to-r from-[#feae1b] to-[#ff914d] hover:opacity-90 transition">
                         Guardar
                     </button>
+
                 </div>
 
             </form>

@@ -4,81 +4,90 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="p-6 space-y-6">
 
     <!-- HEADER -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h3 class="fw-bold mb-1">Documentos</h3>
-            <small class="text-muted">Gerenciamento de documentos por empresa</small>
-        </div>
+    <div>
+        <h1 class="text-2xl font-bold text-gray-800">📁 Documentos</h1>
+        <p class="text-gray-500 text-sm">Gerenciamento de documentos por empresa</p>
     </div>
 
     <!-- GRID -->
-    <div class="row g-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         @foreach($empresas as $empresa)
 
-        <div class="col-md-6 col-lg-4">
+        <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition h-full flex flex-col">
 
-            <div class="card border-0 shadow-sm h-100">
+            <!-- HEADER CARD -->
+            <div class="flex justify-between items-center p-4 border-b">
 
-                <!-- HEADER -->
-                <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
-                    <div class="fw-semibold text-dark">
-                        {{ $empresa->nome }}
+                <div class="font-semibold text-gray-800">
+                    {{ $empresa->nome }}
+                </div>
+
+                <span class="px-3 py-1 text-sm rounded-full font-semibold"
+                      style="background-color: #feae1b20; color: #feae1b;">
+                    {{ $empresa->documents->count() }}
+                </span>
+            </div>
+
+            <!-- BODY -->
+            <div class="p-4 flex-1 space-y-2">
+
+                @if($empresa->documents->count())
+
+                    @foreach($empresa->documents as $doc)
+
+                    <div class="flex justify-between items-center p-2 rounded-lg hover:bg-gray-50 transition">
+
+                        <!-- INFO -->
+                        <div class="flex items-center gap-2">
+
+                            <div class="w-8 h-8 flex items-center justify-center rounded-lg"
+                                 style="background-color: #feae1b20;">
+                                📄
+                            </div>
+
+                            <span class="text-sm text-gray-700 font-medium">
+                                {{ $doc->titulo }}
+                            </span>
+
+                        </div>
+
+                        <!-- ACTIONS -->
+                        <div class="flex gap-2">
+
+                            <!-- VER -->
+                            <a href="{{ asset('storage/' . $doc->file_path) }}"
+                               target="_blank"
+                               class="text-xs px-3 py-1 rounded-lg border font-medium hover:bg-gray-100 transition">
+                                Ver
+                            </a>
+
+                            <!-- DOWNLOAD -->
+                            <a href="{{ asset('storage/' . $doc->file_path) }}"
+                               download
+                               class="text-xs px-3 py-1 rounded-lg text-white font-medium transition"
+                               style="background-color: #feae1b;">
+                                ↓
+                            </a>
+
+                        </div>
+
                     </div>
 
-                    <span class="badge bg-light text-dark border">
-                        {{ $empresa->documents->count() }}
-                    </span>
-                </div>
+                    @endforeach
 
-                <!-- BODY -->
-                <div class="card-body pt-2">
+                @else
 
-                    @if($empresa->documents->count())
+                    <!-- EMPTY -->
+                    <div class="flex flex-col items-center justify-center text-gray-400 py-6 text-sm">
+                        <div class="text-2xl mb-2">📂</div>
+                        Nenhum documento disponível
+                    </div>
 
-                        @foreach($empresa->documents as $doc)
-
-                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="text-muted">📄</span>
-                                <span class="small text-dark">{{ $doc->titulo }}</span>
-                            </div>
-
-                            <div class="d-flex gap-2">
-
-                                <!-- VER -->
-                                <a href="{{ asset('storage/' . $doc->file_path) }}"
-                                   target="_blank"
-                                   class="btn btn-sm btn-light border">
-                                    Ver
-                                </a>
-
-                                <!-- DOWNLOAD -->
-                                <a href="{{ asset('storage/' . $doc->file_path) }}"
-                                   download
-                                   class="btn btn-sm btn-dark">
-                                    Download
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                        @endforeach
-
-                    @else
-
-                        <div class="text-center text-muted py-4 small">
-                            Nenhum documento disponível
-                        </div>
-
-                    @endif
-
-                </div>
+                @endif
 
             </div>
 

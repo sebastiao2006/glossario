@@ -3,113 +3,137 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <h1 class="page-title">Dashboard</h1>
-    <p class="page-subtitle">Resumo geral do painel administrativo.</p>
 
-<div class="row g-4 mb-4">
+<div class="p-6 space-y-6 bg-gray-100 min-h-screen">
 
-    <div class="col-md-6 col-xl-3">
-        <div class="stat-card">
-            <h6 class="text-muted">Funcionários</h6>
-            <h2>{{ $totalFuncionarios }}</h2>
-        </div>
+    {{-- Header --}}
+    <div>
+        <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
+        <p class="text-gray-500">Resumo geral do painel administrativo.</p>
     </div>
 
-    {{--     <div class="col-md-6 col-xl-3">
-            <div class="stat-card">
-                <h6 class="text-muted">Admins</h6>
-                <h2>{{ $totalAdmins }}</h2>
+    {{-- 🔥 Cards --}}
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+
+        {{-- Gradient destaque --}}
+        <div class="p-5 rounded-2xl text-white shadow-lg bg-gradient-to-r from-[#4b4b4b] to-[#4b4b4b]">
+            <p class="opacity-80">Funcionários</p>
+            <h2 class="text-3xl font-bold">{{ $totalFuncionarios }}</h2>
+        </div>
+
+        <div class="p-5 rounded-2xl text-white shadow-lg bg-gradient-to-r from-[#4b4b4b] to-[#4b4b4b]">
+            <p class="opacity-80">Tarefas Entregues</p>
+            <h2 class="text-3xl font-bold">{{ $tarefasEntregues }}</h2>
+        </div>
+
+        {{-- Cards normais --}}
+        <div class="bg-white p-5 rounded-2xl shadow-md">
+            <p class="text-gray-500">Concluídas</p>
+            <h2 class="text-3xl font-bold text-gray-800">{{ $tarefasConcluidas }}</h2>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow-md">
+            <p class="text-gray-500">Em andamento</p>
+            <h2 class="text-3xl font-bold text-gray-800">{{ $tarefasEmAndamento }}</h2>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow-md">
+            <p class="text-gray-500">Pendentes</p>
+            <h2 class="text-3xl font-bold text-gray-800">{{ $tarefasPendentes }}</h2>
+        </div>
+
+    </div>
+
+    {{-- 🥇 Ranking + Gráfico --}}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+        {{-- 📊 Gráfico --}}
+        <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-md">
+            <h5 class="font-semibold text-gray-800 mb-4">Ranking de Funcionários</h5>
+
+            <div class="h-64">
+                <canvas id="rankingChart"></canvas>
             </div>
-        </div> --}}
-
-    <div class="col-md-6 col-xl-3">
-        <div class="stat-card">
-            <h6 class="text-muted">Tarefas Entregues</h6>
-            <h2>{{ $tarefasEntregues }}</h2>
         </div>
+
+        {{-- 🏆 Ranking lista --}}
+        <div class="bg-white p-6 rounded-2xl shadow-md">
+            <h5 class="font-semibold text-gray-800 mb-4">Top Funcionários</h5>
+
+            @foreach($rankingFuncionarios as $index => $funcionario)
+
+            <div class="flex items-center justify-between py-2 border-b last:border-0">
+
+                <div class="flex items-center gap-3">
+
+                    {{-- Badge ranking --}}
+                    <div class="
+                        w-8 h-8 flex items-center justify-center rounded-full text-white text-sm font-bold
+                        {{ $index == 0 ? 'bg-yellow-400' : '' }}
+                        {{ $index == 1 ? 'bg-gray-400' : '' }}
+                        {{ $index == 2 ? 'bg-orange-400' : '' }}
+                        {{ $index > 2 ? 'bg-gray-200 text-gray-700' : '' }}
+                    ">
+                        {{ $index + 1 }}
+                    </div>
+
+                    <span class="text-gray-700 font-medium">
+                        {{ $funcionario->name }}
+                    </span>
+                </div>
+
+                <span class="text-sm px-3 py-1 rounded-full bg-gradient-to-r from-[#feae1b] to-[#ff914d] text-white">
+                    {{ $funcionario->tarefas_concluidas }}
+                </span>
+
+            </div>
+
+            @endforeach
+        </div>
+
     </div>
 
-    <div class="col-md-6 col-xl-3">
-        <div class="stat-card">
-            <h6 class="text-muted">Concluídas</h6>
-            <h2>{{ $tarefasConcluidas }}</h2>
-        </div>
-    </div>
-
-    <div class="col-md-6 col-xl-3">
-        <div class="stat-card">
-            <h6 class="text-muted">Em andamento</h6>
-            <h2>{{ $tarefasEmAndamento }}</h2>
-        </div>
-    </div>
-
-    <div class="col-md-6 col-xl-3">
-        <div class="stat-card">
-            <h6 class="text-muted">Pendentes</h6>
-            <h2>{{ $tarefasPendentes }}</h2>
-        </div>
-    </div>
-</div>
-    
-<div class="admin-card mt-4">
-    <h5 class="fw-bold mb-3">Ranking de Funcionários</h5>
-
-    <div class="row">
-        <!-- Gráfico -->
-        <div class="col-md-7">
-            <canvas id="rankingChart" height="200"></canvas>
-        </div>
-
-        <!-- Lista -->
-        <div class="col-md-5">
-            <ul class="list-group">
-                @foreach($rankingFuncionarios as $index => $funcionario)
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ $index + 1 }}. {{ $funcionario->name }}
-                        <span class="badge bg-primary rounded-pill">
-                            {{ $funcionario->tarefas_concluidas }}
-                        </span>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
 </div>
 
-
+{{-- Chart.js --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    const labels = @json($rankingFuncionarios->pluck('name'));
-    const data = @json($rankingFuncionarios->pluck('tarefas_concluidas'));
+const ctx = document.getElementById('rankingChart');
 
-    const ctx = document.getElementById('rankingChart');
-
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Tarefas Concluídas',
-                data: data,
-                borderWidth: 1
-            }]
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: @json($rankingFuncionarios->pluck('name')),
+        datasets: [{
+            label: 'Tarefas Concluídas',
+            data: @json($rankingFuncionarios->pluck('tarefas_concluidas')),
+            borderRadius: 8,
+            backgroundColor: function(context) {
+                const gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 300);
+                gradient.addColorStop(0, '#feae1b');
+                gradient.addColorStop(1, '#ff914d');
+                return gradient;
+            }
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false, // 👈 controla altura
+        plugins: {
+            legend: { display: false }
         },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: false
-                }
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: { color: '#eee' }
             },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+            x: {
+                grid: { display: false }
             }
         }
-    });
+    }
+});
 </script>
 
 @endsection
-
