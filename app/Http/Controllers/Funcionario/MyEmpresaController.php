@@ -50,17 +50,22 @@ public function storeRegularizacao(Request $request, $empresaId)
 
 public function finalizar($empresaId)
 {
-    $empresa = auth()->user()->empresas()->findOrFail($empresaId);
+    $empresa = Empresa::where('id', $empresaId)
+        ->where('user_id', auth()->id())
+        ->firstOrFail();
 
-    $empresa->pivot->status = 'finalizada';
-    $empresa->pivot->save();
+    $empresa->update([
+        'status' => 'finalizada'
+    ]);
 
-    return back()->with('success', 'Empresa finalizada com sucesso!');
+    return back()->with('success', 'Empresa finalizada!');
 }
 public function updateRegularizacao(Request $request, $empresaId)
 {
     $request->validate([
         'situacao' => 'required|string',
+        'checklist' => 'nullable|array',
+        'checklist.*' => 'nullable|string',
     ]);
 
     $reg = RegularizacaoEmpresa::where('empresa_id', $empresaId)
@@ -74,6 +79,7 @@ public function updateRegularizacao(Request $request, $empresaId)
 
     $reg->update([
         'situacao' => $request->situacao,
+        'checklist' => json_encode($request->checklist ?? []),
     ]);
 
     return back()->with('success', 'Regularização atualizada com sucesso!');

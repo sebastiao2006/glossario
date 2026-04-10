@@ -165,19 +165,59 @@
                     <div class="bg-white w-[600px] p-6 rounded-xl">
 
                         <h3 class="text-lg font-bold mb-4">Editar Regularização</h3>
+                            <form method="POST" action="{{ route('funcionario.update.regularizacao', $empresa->id) }}">
+                                @csrf
 
-                        <form method="POST" action="{{ route('funcionario.update.regularizacao', $empresa->id) }}">
-                            @csrf
+                                <!-- SITUAÇÃO -->
+                                <label class="text-sm font-medium">Situação</label>
+                                <textarea name="situacao" class="w-full border p-2 rounded mb-3">
+                                    {{ $reg->situacao ?? '' }}
+                                </textarea>
 
-                            <textarea name="situacao" class="w-full border p-2 rounded mb-3">
-                                {{ $reg->situacao ?? '' }}
-                            </textarea>
+                                <!-- CHECKLIST -->
+                                <label class="text-sm font-medium">Checklist</label>
 
-                            <button class="bg-orange-500 text-white px-4 py-2 rounded">
-                                Atualizar
-                            </button>
+                                <div id="edit-checklist-{{ $empresa->id }}" class="mb-3">
 
-                        </form>
+                                    @php
+                                        $checklist = json_decode($reg->checklist ?? '[]', true);
+                                    @endphp
+
+                                    @foreach($checklist as $item)
+                                        <div class="flex gap-2 mb-2">
+                                            <input type="text" name="checklist[]"
+                                                value="{{ $item }}"
+                                                class="w-full border p-2 rounded">
+
+                                            <button type="button"
+                                                    onclick="addEditChecklist({{ $empresa->id }})"
+                                                    class="bg-gray-200 px-3 rounded">
+                                                +
+                                            </button>
+                                        </div>
+                                    @endforeach
+
+                                    <!-- Caso não tenha nada -->
+                                    @if(empty($checklist))
+                                        <div class="flex gap-2 mb-2">
+                                            <input type="text" name="checklist[]"
+                                                class="w-full border p-2 rounded"
+                                                placeholder="Item do checklist">
+
+                                            <button type="button"
+                                                    onclick="addEditChecklist({{ $empresa->id }})"
+                                                    class="bg-gray-200 px-3 rounded">
+                                                +
+                                            </button>
+                                        </div>
+                                    @endif
+
+                                </div>
+
+                                <button class="bg-orange-500 text-white px-4 py-2 rounded">
+                                    Atualizar
+                                </button>
+                            </form>
 
                         <button onclick="closeEditModal({{ $empresa->id }})"
                                 class="mt-2 bg-gray-300 px-4 py-2 rounded">
@@ -233,6 +273,19 @@ function openEditModal(id) {
 
 function closeEditModal(id) {
     document.getElementById('edit-modal-' + id).classList.add('hidden');
+}
+function addEditChecklist(id) {
+    const container = document.getElementById('edit-checklist-' + id);
+
+    const div = document.createElement('div');
+    div.className = 'flex gap-2 mt-2';
+
+    div.innerHTML = `
+        <input type="text" name="checklist[]" class="w-full border p-2 rounded" placeholder="Item do checklist">
+        <button type="button" onclick="addEditChecklist(${id})" class="bg-gray-200 px-3 rounded">+</button>
+    `;
+
+    container.appendChild(div);
 }
 </script>
 
