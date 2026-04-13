@@ -13,6 +13,7 @@ class RegularizacaoEmpresa extends Model
     'empresa_id',
     'user_id',
     'situacao',
+    'observacao', // 👈 TEM que estar aqui
     'checklist',
     'documentos',
 ];

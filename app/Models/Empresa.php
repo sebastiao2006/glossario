@@ -48,4 +48,9 @@ public function regularizacoes()
 {
     return $this->hasMany(RegularizacaoEmpresa::class);
 }
+
+public function latestRegularizacao()
+{
+    return $this->hasOne(RegularizacaoEmpresa::class)->latestOfMany();
+}
 }

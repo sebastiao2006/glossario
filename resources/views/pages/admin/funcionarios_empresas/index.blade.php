@@ -27,7 +27,9 @@
                 @forelse($empresas as $empresa)
 
                     @php
-                        $reg = $empresa->regularizacoes->last();
+                        $reg = $empresa->regularizacoes->sortByDesc('id')->first();
+                        $docs = json_decode($reg->documentos ?? '[]', true);
+                        $checklist = json_decode($reg->checklist ?? '[]', true);
                     @endphp
 
                     <tr class="border-b hover:bg-gray-50">
@@ -42,22 +44,28 @@
 
                         {{-- STATUS --}}
                         <td class="p-3">
-                            @if($reg && $reg->status == 'finalizada')
-                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">
-                                    Finalizada
-                                </span>
-                            @elseif($reg)
-                               {{--  <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs">
-                                    Em progresso
-                                </span> --}}
-                            @else
-                                <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">
-                                    Sem registo
-                                </span>
-                            @endif
+                          @if($reg)
+    @if($reg->situacao == 'finalizada')
+        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">
+            Finalizada
+        </span>
+    @elseif($reg->situacao == 'em_andamento')
+        <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs">
+            Em andamento
+        </span>
+    @else
+        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">
+            {{ ucfirst($reg->situacao) }}
+        </span>
+    @endif
+@else
+    <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">
+        Sem registo
+    </span>
+@endif
                         </td>
 
-                        {{-- BOTÃO MODAL --}}
+                        {{-- DETALHES --}}
                         <td class="p-3">
 
                             <button
@@ -71,11 +79,6 @@
 
                                 @if($reg)
 
-                                    @php
-                                        $docs = json_decode($reg->documentos ?? '[]', true);
-                                        $checklist = json_decode($reg->checklist ?? '[]', true);
-                                    @endphp
-
                                     <div class="overflow-x-auto">
 
                                         <table class="w-full border border-gray-200 rounded-lg overflow-hidden text-sm">
@@ -83,14 +86,30 @@
                                             <tbody>
 
                                                 {{-- SITUAÇÃO --}}
-                                                 <tr class="border-b">
-                                                    <td class="p-3 bg-gray-50 font-semibold w-1/3">Situação</td>
-                                                    <td class="p-3">{{ $reg->situacao }}</td>
-                                                </tr> 
+                                                <tr class="border-b">
+                                                    <td class="p-3 bg-gray-50 font-semibold w-1/3">
+                                                        Situação
+                                                    </td>
+                                                    <td class="p-3">
+                                                        {{ $reg->situacao }}
+                                                    </td>
+                                                </tr>
+
+                                                {{-- OBSERVAÇÃO (🔥 AQUI ESTÁ A CORREÇÃO) --}}
+                                                <tr class="border-b">
+                                                    <td class="p-3 bg-gray-50 font-semibold align-top">
+                                                        Observação
+                                                    </td>
+                                                    <td class="p-3 text-gray-700">
+                                                        {{ $reg->observacao ?? 'Sem observação' }}
+                                                    </td>
+                                                </tr>
 
                                                 {{-- CHECKLIST --}}
                                                 <tr class="border-b">
-                                                    <td class="p-3 bg-gray-50 font-semibold align-top">Checklist</td>
+                                                    <td class="p-3 bg-gray-50 font-semibold align-top">
+                                                        Checklist
+                                                    </td>
                                                     <td class="p-3">
                                                         <ul class="space-y-1 text-xs text-gray-600">
                                                             @foreach($checklist as $item)
@@ -102,7 +121,9 @@
 
                                                 {{-- DOCUMENTOS --}}
                                                 <tr>
-                                                    <td class="p-3 bg-gray-50 font-semibold align-top">Documentos</td>
+                                                    <td class="p-3 bg-gray-50 font-semibold align-top">
+                                                        Documentos
+                                                    </td>
                                                     <td class="p-3">
 
                                                         @if(!empty($docs))
@@ -114,7 +135,9 @@
                                                                 </a>
                                                             @endforeach
                                                         @else
-                                                            <span class="text-gray-400 text-xs">Sem documentos</span>
+                                                            <span class="text-gray-400 text-xs">
+                                                                Sem documentos
+                                                            </span>
                                                         @endif
 
                                                     </td>
@@ -156,25 +179,22 @@
 </div>
 
 {{-- MODAL --}}
-<div id="modal" class="fixed inset-0 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
+<div id="modal"
+     class="fixed inset-0 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
 
     <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl p-6 relative border border-gray-100 animate-fadeIn">
 
-        {{-- FECHAR --}}
         <button onclick="closeModal()"
                 class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-red-100 text-gray-500 hover:text-red-600 transition">
             ✕
         </button>
 
-        {{-- HEADER --}}
         <h2 class="text-2xl font-bold mb-5 bg-gradient-to-r from-[#feae1b] to-[#ff914d] text-transparent bg-clip-text">
             Detalhes da Empresa
         </h2>
 
-        {{-- CONTEÚDO --}}
         <div id="modal-content" class="text-sm text-gray-700"></div>
 
-        {{-- FOOTER --}}
         <div class="mt-6 flex justify-end">
             <button onclick="closeModal()"
                     class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm">
@@ -187,21 +207,21 @@
 
 {{-- SCRIPT --}}
 <script>
-    function openModal(id) {
-        const content = document.getElementById('data-' + id).innerHTML;
-        document.getElementById('modal-content').innerHTML = content;
-        document.getElementById('modal').classList.remove('hidden');
-    }
+function openModal(id) {
+    const content = document.getElementById('data-' + id).innerHTML;
+    document.getElementById('modal-content').innerHTML = content;
+    document.getElementById('modal').classList.remove('hidden');
+}
 
-    function closeModal() {
-        document.getElementById('modal').classList.add('hidden');
-    }
+function closeModal() {
+    document.getElementById('modal').classList.add('hidden');
+}
 
-    document.getElementById('modal').addEventListener('click', function(e){
-        if(e.target === this){
-            closeModal();
-        }
-    });
+document.getElementById('modal').addEventListener('click', function(e){
+    if(e.target === this){
+        closeModal();
+    }
+});
 </script>
 
 {{-- ANIMAÇÃO --}}
